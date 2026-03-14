@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaludAsist · App de apoyo al diagnóstico</title>
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: #F3E8FF;  /* morado claro de fondo */
+            color: #2D1B3C;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        /* Header con morado más intenso pero claro */
+        .hero {
+            background: #D9C5F2;  /* morado suave principal */
+            color: #2D1B3C;
+            border-radius: 0 0 3rem 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 12px 30px rgba(120, 80, 160, 0.2);
+        }
+        .hero .container {
+            padding: 4rem 1.5rem 5rem;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .hero h1 i {
+            color: #6D4C8F;
+            margin-right: 10px;
+        }
+        .hero .subhead {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 2rem;
+            opacity: 0.9;
+            max-width: 650px;
+            font-weight: 300;
+            border-left: 4px solid #6D4C8F;
+            padding-left: 1.5rem;
+        }
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .badge {
+            background: rgba(200, 170, 240, 0.3);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.3rem;
+            border-radius: 60px;
+            font-weight: 500;
+            border: 1px solid #B59BD9;
+        }
+        .badge i {
+            margin-right: 8px;
+            color: #6D4C8F;
+        }
+        /* Secciones generales */
+        section {
+            margin: 5rem 0;
+        }
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #4A2C66;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title i {
+            background: #E3D0FF;
+            padding: 0.7rem;
+            border-radius: 50%;
+            color: #4A2C66;
+            font-size: 1.6rem;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+        .card {
+            background: #FCF5FF;
+            padding: 2rem 1.8rem;
+            border-radius: 2rem;
+            box-shadow: 0 10px 25px rgba(100, 60, 140, 0.08);
+            transition: 0.2s ease;
+            border: 1px solid #D6C0F0;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px rgba(130, 80, 180, 0.15);
+            border-color: #B89EE0;
+        }
+        .card-icon {
+            font-size: 2.8rem;
+            color: #7A56A0;
+            margin-bottom: 1rem;
+        }
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: #3E2357;
+        }
+        .card p {
+            color: #4A365E;
+            font-size: 1.05rem;
+        }
+        /* Estilos para las imágenes de la app */
+        .app-screenshot {
+            background: #F5ECFF;
+            border-radius: 2.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 20px 30px -10px #C4AED9;
+            border: 1px solid #D4BCF0;
+            text-align: center;
+        }
+        .app-screenshot img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #C4A6E6;
+        }
+        .app-screenshot p {
+            margin-top: 1rem;
+            color: #5A3D7A;
+            font-weight: 500;
+        }
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .feature-item i {
+            color: #8A63B0;
+            font-size: 1.5rem;
+            width: 2rem;
+        }
+        /* Botón de descarga */
+        .btn-download {
+            background: #8A63B0;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 10px #B394D9;
+        }
+        .btn-download i {
+            margin-right: 10px;
+        }
+        .btn-download:hover {
+            background: #6F4A96;
+            transform: scale(1.02);
+            box-shadow: 0 8px 14px #B89EE0;
+        }
+        /* Footer */
+        footer {
+            background: #AC8FD0;
+            color: #1F0F30;
+            border-radius: 3rem 3rem 0 0;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            text-align: center;
+        }
+        @media (max-width: 800px) {
+            .hero h1 { font-size: 2.4rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero principal -->
+    <div class="hero">
+        <div class="container">
+            <h1>
+                <i class="fas fa-stethoscope"></i> DIAGNOSTICO INTELIGENTE
+            </h1>
+            <div class="subhead">
+                Una aplicación pensada para ayudar a personas y profesionales de la salud a obtener una orientación rápida sobre posibles enfermedades a partir de los síntomas observados.
+            </div>
+            <div class="badge-container">
+                <span class="badge"><i class="fas fa-heart"></i> Apoyo en primeros auxilios</span>
+                <span class="badge"><i class="fas fa-users"></i> Para uso personal y comunitario</span>
+                <span class="badge"><i class="fas fa-sync-alt"></i> Siempre actualizable</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- ¿Cómo ayuda? -->
+        <section>
+            <div class="section-title">
+                <i class="fas fa-hands-helping"></i>
+                <h2>¿Cómo ayuda esta app?</h2>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <p style="font-size: 1.3rem; margin-bottom: 1rem;">Brinda una <strong>primera orientación</strong> ante síntomas de salud, permitiendo tomar decisiones informadas mientras se llega a una consulta médica.</p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Rápida y sencilla:</strong> solo seleccionas los síntomas y obtienes una lista de posibles enfermedades relacionadas.</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Educativa:</strong> ayuda a estudiantes y personal de salud a aprender asociaciones entre síntomas y enfermedades.</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Apoyo en comunidades:</strong> útil en lugares con acceso limitado a médicos, como primer filtro.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-screenshot">
+                    <!-- Primera imagen: pantalla de síntomas -->
+                    <img src="26459.jpg" alt="Pantalla de síntomas de la app" />
+                    <p><i class="fas fa-chevron-circle-down"></i> Selecciona los síntomas que presenta el paciente</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Para qué sirve -->
+        <section>
+            <div class="section-title">
+                <i class="fas fa-bullseye"></i>
+                <h2>¿Para qué sirve?</h2>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-home"></i></div>
+                    <h3>En el hogar</h3>
+                    <p>Familias pueden tener una referencia rápida ante malestares comunes y saber si es necesario acudir a un centro de salud.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-school"></i></div>
+                    <h3>En centros educativos</h3>
+                    <p>Profesores y enfermeros escolares pueden utilizarla para evaluar síntomas de estudiantes y actuar en consecuencia.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>En brigadas de salud</h3>
+                    <p>Voluntarios y personal en terreno pueden hacer triajes rápidos y priorizar casos más urgentes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ejemplo real con la segunda imagen -->
+        <section style="background: #F0E2FF; border-radius: 3rem; padding: 2.5rem;">
+            <div style="text-align: center;">
+                <i class="fas fa-mobile-alt" style="font-size: 4rem; color: #6D4C8F;"></i>
+                <h3 style="font-size: 2rem; margin: 1rem 0; color: #3E2357;">Así se ve un resultado</h3>
+                <div class="app-screenshot" style="max-width: 500px; margin: 0 auto;">
+                    <!-- Segunda imagen: pantalla de resultado -->
+                    <img src="26461.jpg" alt="Pantalla de resultado con diagnóstico" />
+                    <p><i class="fas fa-file-medical-alt"></i> Ejemplo: Resfriado común (código J00)</p>
+                </div>
+                <p style="margin-top: 1.5rem; font-size: 1.1rem;">La app muestra el código de enfermedad, descripción, síntomas, causas y tratamiento recomendado, así como la especialidad médica sugerida.</p>
+            </div>
+        </section>
+
+        <!-- Botón de descarga con el enlace proporcionado -->
+        <section style="text-align: center; background: #F7F0FF; border-radius: 3rem; padding: 3rem;">
+            <h2 style="font-size: 2.2rem; color: #4A2C66;">Descarga la app gratuita</h2>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 1.5rem auto;">Disponible para Android en formato APK. Haz clic en el botón para descargar directamente.</p>
+            <a href="https://drive.usercontent.google.com/download?id=19m4Uc_7lJUf1cBShobYo7JVf0cb6SmGO&export=download&authuser=0&confirm=t&uuid=3c7e5a78-9c7d-4d1c-8397-69d99cc2c736&at=AGN2oQ0GovDihTTOZ9RBpkaNRool%3A1773353544921" 
+               class="btn-download" 
+               download="SaludAsist.apk">
+                <i class="fas fa-download"></i> Descargar APP
+            </a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: #5A3D7A;">* El archivo se descargará automáticamente al hacer clic. Peso aproximado: 15-20 MB.</p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <i class="fas fa-heartbeat" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+            <p>SaludAsist · Apoyo diagnóstico para personas y comunidades</p>
+            <p style="font-size: 0.9rem; margin-top: 1rem;">Esta app no reemplaza una consulta médica profesional. Ante cualquier duda, acude a un especialista.</p>
+        </div>
+    </footer>
+</body>
+</html>
